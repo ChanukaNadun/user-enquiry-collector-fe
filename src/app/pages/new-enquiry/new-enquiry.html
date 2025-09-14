@@ -1,0 +1,152 @@
+<div class="min-vh-100 py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8 col-xl-7">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <h1 class="display-6 fw-bold text-primary mb-2">
+                            <i class="fas fa-headset me-2"></i>
+                            Enquiry Management System
+                        </h1>
+                        <p class="text-muted">
+                            Submit your enquiries and we'll get back to you as soon as possible
+                        </p>
+                    </div>
+
+                    <!-- Success Alert -->
+                    <div class="mb-4 success-alert" id="successAlert">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            <strong>Success!</strong> <span id="successMessage">Enquiry created successfully!</span>
+                            <button type="button" class="btn-close" onclick="hideSuccessAlert()" aria-label="Close"></button>
+                        </div>
+                    </div>
+
+                    <!-- Enquiry Form -->
+                    <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="card-title mb-0">
+                                <i class="fas fa-plus-circle me-2"></i>
+                                Create New Enquiry
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <form id="enquiryForm" novalidate>
+                                <div class="row">
+                                    <!-- Enquiry Type -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="enquiryTypeId" class="form-label">
+                                            <i class="fas fa-list me-1"></i>
+                                            Enquiry Type <span class="text-danger">*</span>
+                                        </label>
+                                        <select id="enquiryTypeId" [(ngModel)]="newEnquiryObj.enquiryTypeId" name="enquiryTypeId" class="form-select" aria-placeholder="Type" required>
+                                            
+                                            @for (item of typeList | async; track $index){
+                                                <option [value]="item.typeId" >{{item.typeName}}</option>
+                                            }
+                                        </select>
+                                        <div class="invalid-feedback">Please select an enquiry type.</div>
+                                    </div>
+
+                                    <!-- Enquiry Status -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="enquiryStatusId" class="form-label">
+                                            <i class="fas fa-flag me-1"></i>
+                                            Status
+                                        </label>
+                                        <select id="enquiryStatusId" [(ngModel)]="newEnquiryObj.enquiryStatusId" name="enquiryStatusId" class="form-select" aria-placeholder="select">
+                                            
+                                            @for (item of statusList | async; track $index){
+                                                <option [value]="item.statusId" >{{item.status}}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Customer Name -->
+                                <div class="mb-3">
+                                    <label for="customerName" class="form-label">
+                                        <i class="fas fa-user me-1"></i>
+                                        Customer Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" id="customerName" [(ngModel)]="newEnquiryObj.customerName" name="customerName" class="form-control" 
+                                           placeholder="Enter customer full name" required>
+                                    <div class="invalid-feedback">Customer name is required.</div>
+                                </div>
+
+                                <div class="row">
+                                    <!-- Mobile Number -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="mobileNo" class="form-label">
+                                            <i class="fas fa-phone me-1"></i>
+                                            Mobile Number
+                                        </label>
+                                        <input type="tel" id="mobileNo" [(ngModel)]="newEnquiryObj.mobileNo" name="mobileNo" class="form-control" 
+                                               placeholder="e.g., +1234567890" pattern="[\+]?[\d\s\-\(\)]{10,}">
+                                        <div class="invalid-feedback">Please enter a valid mobile number.</div>
+                                    </div>
+
+                                    <!-- Email -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">
+                                            <i class="fas fa-envelope me-1"></i>
+                                            Email Address
+                                        </label>
+                                        <input type="email" id="email" name="email" [(ngModel)]="newEnquiryObj.email" class="form-control" 
+                                               placeholder="customer@example.com">
+                                        <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">
+                                        <i class="fas fa-comment me-1"></i>
+                                        Message/Description
+                                    </label>
+                                    <textarea id="message" [(ngModel)]="newEnquiryObj.message" name="message" class="form-control" rows="4" 
+                                              placeholder="Please describe your enquiry in detail..."></textarea>
+                                </div>
+
+                                <!-- Resolution (Hidden by default, can be shown for admin users) -->
+                                <div class="mb-3" style="display: none;">
+                                    <label for="resolution" class="form-label">
+                                        <i class="fas fa-check-circle me-1"></i>
+                                        Resolution
+                                    </label>
+                                    <textarea id="resolution" name="resolution" [(ngModel)]="newEnquiryObj.resolution" class="form-control" rows="3" 
+                                              placeholder="Resolution details..."></textarea>
+                                </div>
+
+                                <!-- Submit Buttons -->
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <button type="button" class="btn btn-outline-secondary me-md-2" onclick="resetForm()">
+                                        <i class="fas fa-undo me-1"></i>
+                                        Reset
+                                    </button>
+                                    <button type="button" (click)="onSave()" class="btn btn-primary" id="submitBtn">
+                                        <span class="loading-spinner">
+                                            <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                            Creating...
+                                        </span>
+                                        <span class="submit-text">
+                                            <i class="fas fa-save me-1"></i>
+                                            Create Enquiry
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt me-1"></i>
+                            Your information is secure and will be handled with care
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

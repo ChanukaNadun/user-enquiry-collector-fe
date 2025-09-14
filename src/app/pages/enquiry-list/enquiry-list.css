@@ -1,0 +1,170 @@
+:root {
+            --bs-primary: #0d6efd;
+            --bs-primary-rgb: 13, 110, 253;
+        } 
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--bs-primary) 0%, #0b5ed7 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .enquiry-card {
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .enquiry-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            border: none;
+            padding: 1.25rem 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .enquiry-type-badge {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            color: #1565c0;
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-weight: 500;
+        }
+
+        .customer-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 20px;
+            color: #6c757d;
+            margin-right: 0.5rem;
+        }
+
+        .message-preview {
+            background: #fff;
+            border-left: 4px solid var(--bs-primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+            font-style: italic;
+            color: #495057;
+        }
+
+        .resolution-section {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        .date-info {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .action-buttons .btn {
+            border-radius: 20px;
+            padding: 0.4rem 1rem;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-filter-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-btn {
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 2px solid #e9ecef;
+            background: white;
+            color: #495057;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--bs-primary);
+            color: white;
+            border-color: var(--bs-primary);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--bs-primary);
+            color: var(--bs-primary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6c757d;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .header-section {
+                padding: 1.5rem 0;
+            }
+            
+            .enquiry-card {
+                margin-bottom: 1rem;
+            }
+            
+            .card-body {
+                padding: 1rem;
+            }
+        }

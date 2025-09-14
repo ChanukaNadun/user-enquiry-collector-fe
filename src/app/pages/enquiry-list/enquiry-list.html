@@ -1,0 +1,370 @@
+ <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h1 class="display-6 fw-bold mb-2">
+                        <i class="fas fa-list-alt me-2"></i>
+                        Enquiry Management
+                    </h1>
+                    <p class="mb-0 opacity-75">Manage and track all customer enquiries</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <button class="btn btn-light btn-lg" onclick="window.location.href='enquiry-form.html'">
+                        <i class="fas fa-plus me-2"></i>
+                        New Enquiry
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Search and Filter Section -->
+        <div class="search-filter-section">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Search by customer name, email, or message..." id="searchInput">
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <select class="form-select" id="typeFilter">
+                        <option value="">All Enquiry Types</option>
+                        <option value="1">General Inquiry</option>
+                        <option value="2">Product Support</option>
+                        <option value="3">Technical Issue</option>
+                        <option value="4">Billing Question</option>
+                        <option value="5">Feature Request</option>
+                        <option value="6">Complaint</option>
+                        <option value="7">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label class="form-label fw-semibold">Filter by Status:</label>
+                    <div>
+                        <button class="filter-btn active" data-status="">All</button>
+                        <button class="filter-btn" data-status="1">New</button>
+                        <button class="filter-btn" data-status="2">In Progress</button>
+                        <button class="filter-btn" data-status="3">Resolved</button>
+                        <button class="filter-btn" data-status="4">Closed</button>
+                        <button class="filter-btn" data-status="5">On Hold</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enquiry Cards Container -->
+        <div id="enquiryContainer">
+            <!-- Sample Enquiry Cards (Replace with dynamic data) -->
+            
+            <!-- Enquiry Card 1 -->
+            <div class="enquiry-card" data-enquiry-id="1" data-status="1" data-type="2">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="card-title mb-1">
+                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
+                                Enquiry #ENQ001
+                            </h5>
+                            <div class="d-flex align-items-center">
+                                <span class="enquiry-type-badge me-2">Product Support</span>
+                                <span class="status-badge bg-primary text-white">New</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="date-info">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Jan 15, 2024 10:30 AM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer-info">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            John Smith
+                        </h6>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span>john.smith@email.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-preview">
+                        <strong>Message:</strong><br>
+                        I'm having trouble with the product installation. The setup wizard keeps crashing at step 3. Could you please help me resolve this issue?
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(1)">
+                            <i class="fas fa-eye me-1"></i>View Details
+                        </button>
+                        <button class="btn btn-success btn-sm" onclick="updateStatus(1, 2)">
+                            <i class="fas fa-play me-1"></i>Start Progress
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(1)">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enquiry Card 2 -->
+            <div class="enquiry-card" data-enquiry-id="2" data-status="2" data-type="3">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="card-title mb-1">
+                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
+                                Enquiry #ENQ002
+                            </h5>
+                            <div class="d-flex align-items-center">
+                                <span class="enquiry-type-badge me-2">Technical Issue</span>
+                                <span class="status-badge bg-warning text-dark">In Progress</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="date-info">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Jan 14, 2024 2:15 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer-info">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            Sarah Johnson
+                        </h6>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span>+1 (555) 987-6543</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span>sarah.johnson@company.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-preview">
+                        <strong>Message:</strong><br>
+                        The application is running very slowly and sometimes freezes completely. This started happening after the latest update.
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(2)">
+                            <i class="fas fa-eye me-1"></i>View Details
+                        </button>
+                        <button class="btn btn-success btn-sm" onclick="updateStatus(2, 3)">
+                            <i class="fas fa-check me-1"></i>Mark Resolved
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(2)">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enquiry Card 3 -->
+            <div class="enquiry-card" data-enquiry-id="3" data-status="3" data-type="1">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="card-title mb-1">
+                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
+                                Enquiry #ENQ003
+                            </h5>
+                            <div class="d-flex align-items-center">
+                                <span class="enquiry-type-badge me-2">General Inquiry</span>
+                                <span class="status-badge bg-success text-white">Resolved</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="date-info">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Jan 13, 2024 9:45 AM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer-info">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            Michael Brown
+                        </h6>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span>+1 (555) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span>michael.brown@email.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-preview">
+                        <strong>Message:</strong><br>
+                        I would like to know more about your premium features and pricing plans. Can someone provide detailed information?
+                    </div>
+                    
+                    <div class="resolution-section">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Resolution
+                        </h6>
+                        <p class="mb-0">Sent detailed pricing information and feature comparison. Customer was satisfied with the response and decided to upgrade to premium plan.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(3)">
+                            <i class="fas fa-eye me-1"></i>View Details
+                        </button>
+                        <button class="btn btn-secondary btn-sm" onclick="updateStatus(3, 4)">
+                            <i class="fas fa-archive me-1"></i>Close
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(3)">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enquiry Card 4 -->
+            <div class="enquiry-card" data-enquiry-id="4" data-status="4" data-type="4">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="card-title mb-1">
+                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
+                                Enquiry #ENQ004
+                            </h5>
+                            <div class="d-flex align-items-center">
+                                <span class="enquiry-type-badge me-2">Billing Question</span>
+                                <span class="status-badge bg-secondary text-white">Closed</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="date-info">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Jan 12, 2024 4:20 PM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer-info">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            Emily Davis
+                        </h6>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span>+1 (555) 321-0987</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span>emily.davis@business.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-preview">
+                        <strong>Message:</strong><br>
+                        I was charged twice for my subscription this month. Can you please check my billing and process a refund for the duplicate charge?
+                    </div>
+                    
+                    <div class="resolution-section">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Resolution
+                        </h6>
+                        <p class="mb-0">Verified duplicate charge in billing system. Processed full refund of $29.99. Refund will appear in customer's account within 3-5 business days.</p>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(4)">
+                            <i class="fas fa-eye me-1"></i>View Details
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(4)">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enquiry Card 5 -->
+            <div class="enquiry-card" data-enquiry-id="5" data-status="5" data-type="5">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="card-title mb-1">
+                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
+                                Enquiry #ENQ005
+                            </h5>
+                            <div class="d-flex align-items-center">
+                                <span class="enquiry-type-badge me-2">Feature Request</span>
+                                <span class="status-badge bg-info text-white">On Hold</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="date-info">
+                                <i class="fas fa-calendar-alt me-1"></i>
+                                Jan 11, 2024 11:00 AM
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="customer-info">
+                        <h6 class="fw-bold mb-2">
+                            <i class="fas fa-user me-2"></i>
+                            David Wilson
+                        </h6>
+                        <div class="contact-item">
+                            <i class="fas fa-phone contact-icon"></i>
+                            <span>+1 (555) 654-3210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope contact-icon"></i>
+                            <span>david.wilson@tech.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="message-preview">
+                        <strong>Message:</strong><br>
+                        Would it be possible to add dark mode support to the application? Many users have been requesting this feature for better usability during night hours.
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(5)">
+                            <i class="fas fa-eye me-1"></i>View Details
+                        </button>
+                        <button class="btn btn-success btn-sm" onclick="updateStatus(5, 2)">
+                            <i class="fas fa-play me-1"></i>Resume
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(5)">
+                            <i class="fas fa-edit me-1"></i>Edit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-inbox"></i>
+            <h4>No Enquiries Found</h4>
+            <p>No enquiries match your current filters. Try adjusting your search criteria.</p>
+        </div>
+    </div>
