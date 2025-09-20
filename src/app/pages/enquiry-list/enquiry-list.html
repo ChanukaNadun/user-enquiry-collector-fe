@@ -9,7 +9,7 @@
                     <p class="mb-0 opacity-75">Manage and track all customer enquiries</p>
                 </div>
                 <div class="col-md-4 text-md-end">
-                    <button class="btn btn-light btn-lg" onclick="window.location.href='enquiry-form.html'">
+                    <button class="btn btn-light btn-lg" routerLink="/createNew">
                         <i class="fas fa-plus me-2"></i>
                         New Enquiry
                     </button>
@@ -63,23 +63,24 @@
             <!-- Sample Enquiry Cards (Replace with dynamic data) -->
             
             <!-- Enquiry Card 1 -->
-            <div class="enquiry-card" data-enquiry-id="1" data-status="1" data-type="2">
+             @for (item of enquiryList; track $index){ 
+                <div class="enquiry-card" data-enquiry-id="1" data-status="1" data-type="2">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-8">
                             <h5 class="card-title mb-1">
                                 <i class="fas fa-ticket-alt me-2 text-primary"></i>
-                                Enquiry #ENQ001
+                                Enquiry {{item.enquiryId}}
                             </h5>
                             <div class="d-flex align-items-center">
                                 <span class="enquiry-type-badge me-2">Product Support</span>
-                                <span class="status-badge bg-primary text-white">New</span>
+                                <span class="status-badge bg-primary text-white">{{item.enquiryStatusId}}</span>
                             </div>
                         </div>
                         <div class="col-md-4 text-md-end">
                             <div class="date-info">
                                 <i class="fas fa-calendar-alt me-1"></i>
-                                Jan 15, 2024 10:30 AM
+                                {{item.createdDate | date:"dd-MMM-yy"}}
                             </div>
                         </div>
                     </div>
@@ -88,21 +89,21 @@
                     <div class="customer-info">
                         <h6 class="fw-bold mb-2">
                             <i class="fas fa-user me-2"></i>
-                            John Smith
+                            {{item.customerName}}
                         </h6>
                         <div class="contact-item">
                             <i class="fas fa-phone contact-icon"></i>
-                            <span>+1 (555) 123-4567</span>
+                            <span>{{item.mobileNo}}</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope contact-icon"></i>
-                            <span>john.smith@email.com</span>
+                            <span>{{item.email}}</span>
                         </div>
                     </div>
                     
                     <div class="message-preview">
                         <strong>Message:</strong><br>
-                        I'm having trouble with the product installation. The setup wizard keeps crashing at step 3. Could you please help me resolve this issue?
+                        {{item.message}}
                     </div>
                     
                     <div class="action-buttons">
@@ -118,131 +119,12 @@
                     </div>
                 </div>
             </div>
+             }
+            
 
-            <!-- Enquiry Card 2 -->
-            <div class="enquiry-card" data-enquiry-id="2" data-status="2" data-type="3">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h5 class="card-title mb-1">
-                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
-                                Enquiry #ENQ002
-                            </h5>
-                            <div class="d-flex align-items-center">
-                                <span class="enquiry-type-badge me-2">Technical Issue</span>
-                                <span class="status-badge bg-warning text-dark">In Progress</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-md-end">
-                            <div class="date-info">
-                                <i class="fas fa-calendar-alt me-1"></i>
-                                Jan 14, 2024 2:15 PM
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="customer-info">
-                        <h6 class="fw-bold mb-2">
-                            <i class="fas fa-user me-2"></i>
-                            Sarah Johnson
-                        </h6>
-                        <div class="contact-item">
-                            <i class="fas fa-phone contact-icon"></i>
-                            <span>+1 (555) 987-6543</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <span>sarah.johnson@company.com</span>
-                        </div>
-                    </div>
-                    
-                    <div class="message-preview">
-                        <strong>Message:</strong><br>
-                        The application is running very slowly and sometimes freezes completely. This started happening after the latest update.
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(2)">
-                            <i class="fas fa-eye me-1"></i>View Details
-                        </button>
-                        <button class="btn btn-success btn-sm" onclick="updateStatus(2, 3)">
-                            <i class="fas fa-check me-1"></i>Mark Resolved
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(2)">
-                            <i class="fas fa-edit me-1"></i>Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Enquiry Card 3 -->
-            <div class="enquiry-card" data-enquiry-id="3" data-status="3" data-type="1">
-                <div class="card-header">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h5 class="card-title mb-1">
-                                <i class="fas fa-ticket-alt me-2 text-primary"></i>
-                                Enquiry #ENQ003
-                            </h5>
-                            <div class="d-flex align-items-center">
-                                <span class="enquiry-type-badge me-2">General Inquiry</span>
-                                <span class="status-badge bg-success text-white">Resolved</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 text-md-end">
-                            <div class="date-info">
-                                <i class="fas fa-calendar-alt me-1"></i>
-                                Jan 13, 2024 9:45 AM
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="customer-info">
-                        <h6 class="fw-bold mb-2">
-                            <i class="fas fa-user me-2"></i>
-                            Michael Brown
-                        </h6>
-                        <div class="contact-item">
-                            <i class="fas fa-phone contact-icon"></i>
-                            <span>+1 (555) 456-7890</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope contact-icon"></i>
-                            <span>michael.brown@email.com</span>
-                        </div>
-                    </div>
-                    
-                    <div class="message-preview">
-                        <strong>Message:</strong><br>
-                        I would like to know more about your premium features and pricing plans. Can someone provide detailed information?
-                    </div>
-                    
-                    <div class="resolution-section">
-                        <h6 class="fw-bold mb-2">
-                            <i class="fas fa-check-circle me-2"></i>
-                            Resolution
-                        </h6>
-                        <p class="mb-0">Sent detailed pricing information and feature comparison. Customer was satisfied with the response and decided to upgrade to premium plan.</p>
-                    </div>
-                    
-                    <div class="action-buttons">
-                        <button class="btn btn-primary btn-sm" onclick="viewEnquiry(3)">
-                            <i class="fas fa-eye me-1"></i>View Details
-                        </button>
-                        <button class="btn btn-secondary btn-sm" onclick="updateStatus(3, 4)">
-                            <i class="fas fa-archive me-1"></i>Close
-                        </button>
-                        <button class="btn btn-outline-secondary btn-sm" onclick="editEnquiry(3)">
-                            <i class="fas fa-edit me-1"></i>Edit
-                        </button>
-                    </div>
-                </div>
-            </div>
 
             <!-- Enquiry Card 4 -->
-            <div class="enquiry-card" data-enquiry-id="4" data-status="4" data-type="4">
+            <!-- <div class="enquiry-card" data-enquiry-id="4" data-status="4" data-type="4">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-8">
@@ -301,10 +183,10 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Enquiry Card 5 -->
-            <div class="enquiry-card" data-enquiry-id="5" data-status="5" data-type="5">
+            <!-- <div class="enquiry-card" data-enquiry-id="5" data-status="5" data-type="5">
                 <div class="card-header">
                     <div class="row align-items-center">
                         <div class="col-md-8">
@@ -358,7 +240,7 @@
                         </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <!-- Empty State (Hidden by default) -->

@@ -1,10 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Master } from '../../service/master';
 import { Observable } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-enquiry-list',
-  imports: [],
+  imports: [DatePipe],
   templateUrl: './enquiry-list.html',
   styleUrl: './enquiry-list.css'
 })
