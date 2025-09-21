@@ -1,0 +1,91 @@
+ <div class="header-section">
+        <div class="container">
+            
+          <div class="container mt-4">
+  <h2>Update Enquiry</h2>
+
+  <!-- Success Alert -->
+  <div *ngIf="successMessage" class="alert alert-success">
+    {{ successMessage }}
+  </div>
+
+  <!-- Error Alert -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <form (ngSubmit)="onUpdate()" #updateForm="ngForm">
+    <input type="hidden" [(ngModel)]="updatedEnquiryObj.enquiryId" name="enquiryId" />
+
+    <!-- Customer Name -->
+    <div class="mb-3">
+      <label class="form-label">Customer Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="updatedEnquiryObj.customerName"
+        name="customerName"
+        required
+      />
+    </div>
+
+    <!-- Mobile Number -->
+    <div class="mb-3">
+      <label class="form-label">Mobile No</label>
+      <input
+        type="tel"
+        class="form-control"
+        [(ngModel)]="updatedEnquiryObj.mobileNo"
+        name="mobileNo"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="updatedEnquiryObj.email"
+        name="email"
+      />
+    </div>
+
+    <!-- Message -->
+    <div class="mb-3">
+      <label class="form-label">Message</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="updatedEnquiryObj.message"
+        name="message"
+      ></textarea>
+    </div>
+
+    <!-- Resolution -->
+    <div class="mb-3">
+      <label class="form-label">Resolution</label>
+      <textarea
+        class="form-control"
+        [(ngModel)]="updatedEnquiryObj.resolution"
+        name="resolution"
+      ></textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <button type="button" class="btn btn-danger" (click)="onDelete()">
+        Delete
+      </button>
+
+      <div>
+        <button type="button" class="btn btn-secondary me-2" (click)="onReset()">
+          Reset
+        </button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+        </div>
+    </div>

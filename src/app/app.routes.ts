@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { EnquiryList } from './pages/enquiry-list/enquiry-list';
 import { NewEnquiry } from './pages/new-enquiry/new-enquiry';
+import { UpdateEnquiry } from './pages/update-enquiry/update-enquiry';
 
 export const routes: Routes = [
     {
@@ -15,5 +16,9 @@ export const routes: Routes = [
     {
         path:"createNew",
         component:NewEnquiry
+    },
+    {
+        path:"updateEnquiry/:id",
+        component:UpdateEnquiry
     }
 ];

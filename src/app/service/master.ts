@@ -22,4 +22,16 @@ export class Master {
   getEnquiries(){
     return this.http.get("https://localhost:7027/api/EnquiryMaster/GetAllEnquiry")
   }
+
+  getSingleEnquiry(id: number){
+    return this.http.get("https://localhost:7027/api/EnquiryMaster/GetEnquiryById?id=" + id)
+  }
+
+  updateEnquiry(obj:any){
+    return this.http.put("https://localhost:7027/api/EnquiryMaster/GetAllEnquiry", obj)
+  }
+
+  deleteEnquiry(id: number){
+    return this.http.delete("https://localhost:7027/api/EnquiryMaster/DeleteEnquiryById?id=" + id)
+  }
 }
