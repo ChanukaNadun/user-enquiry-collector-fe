@@ -28,7 +28,7 @@ export class Master {
   }
 
   updateEnquiry(obj:any){
-    return this.http.put("https://localhost:7027/api/EnquiryMaster/GetAllEnquiry", obj)
+    return this.http.put("https://localhost:7027/api/EnquiryMaster/UpdateEnquiry", obj)
   }
 
   deleteEnquiry(id: number){
